@@ -1,0 +1,146 @@
+[
+  {
+    "model": "company_api.department",
+    "pk": 1,
+    "fields": {
+      "name": "DC",
+      "director": 2
+    }
+  },
+  {
+    "model": "company_api.department",
+    "pk": 2,
+    "fields": {
+      "name": "Marvel",
+      "director": 5
+    }
+  },
+  {
+    "model": "company_api.worker",
+    "pk": 1,
+    "fields": {
+      "name": "Паркер Питер",
+      "photo": "workers/человек-паук.jpeg",
+      "salary": "20000.00",
+      "age": 18,
+      "department": 2
+    }
+  },
+  {
+    "model": "company_api.worker",
+    "pk": 2,
+    "fields": {
+      "name": "Вейн Брюс",
+      "photo": "",
+      "salary": "10000000.00",
+      "age": 35,
+      "department": 1
+    }
+  },
+  {
+    "model": "company_api.worker",
+    "pk": 3,
+    "fields": {
+      "name": "Лэнг Скотт",
+      "photo": "workers/Ant-Man-2.jpg",
+      "salary": "3.00",
+      "age": 28,
+      "department": 2
+    }
+  },
+  {
+    "model": "company_api.worker",
+    "pk": 4,
+    "fields": {
+      "name": "Карри Артур",
+      "photo": "workers/Аквамен.jpg",
+      "salary": "15000.00",
+      "age": 31,
+      "department": 1
+    }
+  },
+  {
+    "model": "company_api.worker",
+    "pk": 5,
+    "fields": {
+      "name": "Старк Тони",
+      "photo": "",
+      "salary": "10000000.00",
+      "age": 37,
+      "department": 2
+    }
+  },
+  {
+    "model": "company_api.worker",
+    "pk": 6,
+    "fields": {
+      "name": "Хоулетт Джеймс",
+      "photo": "workers/Рассомаха.jpg",
+      "salary": "30000.00",
+      "age": 41,
+      "department": 2
+    }
+  },
+  {
+    "model": "company_api.worker",
+    "pk": 7,
+    "fields": {
+      "name": "Кент Кларк",
+      "photo": "",
+      "salary": "40000.00",
+      "age": 26,
+      "department": 1
+    }
+  },
+  {
+    "model": "company_api.worker",
+    "pk": 8,
+    "fields": {
+      "name": "Аллен Барри",
+      "photo": "workers/Флеш.jpg",
+      "salary": "35000.00",
+      "age": 23,
+      "department": 1
+    }
+  },
+  {
+    "model": "company_api.worker",
+    "pk": 9,
+    "fields": {
+      "name": "Бэннер Брюс",
+      "photo": "workers/Халк.jpg",
+      "salary": "50000.00",
+      "age": 43,
+      "department": 2
+    }
+  },
+  {
+    "model": "company_api.worker",
+    "pk": 10,
+    "fields": {
+      "name": "Диана",
+      "photo": "workers/Чудо-женщина.jpg",
+      "salary": "60000.00",
+      "age": 27,
+      "department": 1
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 1,
+    "fields": {
+      "password": "pbkdf2_sha256$600000$bn731TvDXVVFYndnKFhKaa$b2G0mHrtbi59CFxzn3qIujFDhSUxgGlyfVasrlU0liA=",
+      "last_login": "2023-04-04T17:23:38.896Z",
+      "is_superuser": true,
+      "username": "superuser",
+      "first_name": "",
+      "last_name": "",
+      "email": "",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2023-04-04T11:19:58.284Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  }
+]
