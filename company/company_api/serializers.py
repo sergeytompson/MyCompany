@@ -1,14 +1,13 @@
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import User
-from django.db.models import Sum
 from rest_framework import serializers
 
 from .models import Department, Worker
 
 
 class DepartmentSerializer(serializers.ModelSerializer):
-    workers_count = serializers.SerializerMethodField()
-    department_salary = serializers.SerializerMethodField()
+    workers_count = serializers.IntegerField()
+    department_salary = serializers.FloatField()
     director = serializers.StringRelatedField()
 
     class Meta:
@@ -20,12 +19,6 @@ class DepartmentSerializer(serializers.ModelSerializer):
             "workers_count",
             "department_salary",
         )
-
-    def get_workers_count(self, obj: Department) -> int:
-        return obj.worker_set.count()
-
-    def get_department_salary(self, obj: Department) -> float:
-        return obj.worker_set.aggregate(Sum("salary"))["salary__sum"]
 
 
 class WorkerSerializer(serializers.ModelSerializer):
