@@ -5,10 +5,10 @@ from rest_framework import serializers
 from .models import Department, Worker
 
 
-class DepartmentSerializer(serializers.ModelSerializer):
+class DepartmentListSerializer(serializers.ModelSerializer):
     workers_count = serializers.IntegerField()
     department_salary = serializers.FloatField()
-    director = serializers.StringRelatedField()
+    director = serializers.CharField()
 
     class Meta:
         model = Department
@@ -21,19 +21,95 @@ class DepartmentSerializer(serializers.ModelSerializer):
         )
 
 
-class WorkerSerializer(serializers.ModelSerializer):
-    department = serializers.StringRelatedField()
+class WorkerSerializerForDepartmentRetrieve(serializers.ModelSerializer):
+    name = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Worker
+        fields = ("pk", "name", "salary", "age",)
+
+    def get_name(self, obj):
+        return Worker.get_worker_name(obj)
+
+
+class DepartmentRetrieveSerializer(serializers.ModelSerializer):
+    workers = WorkerSerializerForDepartmentRetrieve(many=True, read_only=True)
+    director = WorkerSerializerForDepartmentRetrieve(read_only=True)
+
+    class Meta:
+        model = Department
+        fields = (
+            "pk",
+            "name",
+            "director",
+            "workers"
+        )
+
+
+class DepartmentSerializerForWorkerRetrieve(serializers.ModelSerializer):
+    director = serializers.CharField()
+
+    class Meta:
+        model = Department
+        fields = (
+            "pk",
+            "name",
+            "director",
+        )
+
+
+class WorkerListSerializer(serializers.ModelSerializer):
+    avg_salary = serializers.FloatField()
+    department = serializers.CharField()
 
     class Meta:
         model = Worker
         fields = (
             "pk",
-            "name",
+            "last_name",
+            "first_name",
+            "patronymic",
+            "avg_salary",
             "photo",
             "salary",
             "age",
             "department",
         )
+
+
+class WorkerRetrieveSerializer(serializers.ModelSerializer):
+    department = DepartmentSerializerForWorkerRetrieve(read_only=True)
+
+    class Meta:
+        model = Worker
+        fields = (
+            "last_name",
+            "first_name",
+            "patronymic",
+            "photo",
+            "salary",
+            "age",
+            "department",
+        )
+
+
+class WorkerChangeSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Worker
+        fields = ("last_name", "first_name", "patronymic", "salary", "age", "department",)
+
+
+class WorkerCreateSerializer(WorkerChangeSerializer):
+    pass
+
+
+class WorkerUpdateSerializer(WorkerChangeSerializer):
+    pass
+
+
+class WorkerDeleteSerializer(WorkerChangeSerializer):
+    pass
 
 
 user_model = get_user_model()

@@ -18,10 +18,16 @@ class DepartmentAdmin(admin.ModelAdmin):
 
 @admin.register(Worker)
 class WorkerAdmin(admin.ModelAdmin):
-    list_display = ("pk", "name", "department")
+    list_display = ("pk", "department", "name",)
     list_display_links = (
         "pk",
         "name",
     )
-    search_fields = ("name",)
+    search_fields = ("last_name", "first_name", "patronymic",)
     list_filter = ("department",)
+    fields = ("last_name", "first_name", "patronymic", "photo", "salary", "age", "department",)
+
+    def name(self, obj):
+        return Worker.get_worker_name(obj)
+
+    name.short_description = 'ФИО'

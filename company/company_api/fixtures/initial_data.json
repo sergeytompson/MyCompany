@@ -19,7 +19,9 @@
     "model": "company_api.worker",
     "pk": 1,
     "fields": {
-      "name": "Паркер Питер",
+      "last_name": "Паркер",
+      "first_name": "Питер",
+      "patronymic": null,
       "photo": "workers/человек-паук.jpeg",
       "salary": "20000.00",
       "age": 18,
@@ -30,8 +32,10 @@
     "model": "company_api.worker",
     "pk": 2,
     "fields": {
-      "name": "Вейн Брюс",
-      "photo": "",
+      "last_name": "Уэйн",
+      "first_name": "Брюс",
+      "patronymic": null,
+      "photo": "workers/Бетмен.jpg",
       "salary": "10000000.00",
       "age": 35,
       "department": 1
@@ -41,7 +45,9 @@
     "model": "company_api.worker",
     "pk": 3,
     "fields": {
-      "name": "Лэнг Скотт",
+      "last_name": "Лэнг",
+      "first_name": "Скотт",
+      "patronymic": null,
       "photo": "workers/Ant-Man-2.jpg",
       "salary": "3.00",
       "age": 28,
@@ -52,7 +58,9 @@
     "model": "company_api.worker",
     "pk": 4,
     "fields": {
-      "name": "Карри Артур",
+      "last_name": "Карри",
+      "first_name": "Артур",
+      "patronymic": null,
       "photo": "workers/Аквамен.jpg",
       "salary": "15000.00",
       "age": 31,
@@ -63,8 +71,10 @@
     "model": "company_api.worker",
     "pk": 5,
     "fields": {
-      "name": "Старк Тони",
-      "photo": "",
+      "last_name": "Старк",
+      "first_name": "Тони",
+      "patronymic": null,
+      "photo": "workers/Железный_человек.jpg",
       "salary": "10000000.00",
       "age": 37,
       "department": 2
@@ -74,7 +84,9 @@
     "model": "company_api.worker",
     "pk": 6,
     "fields": {
-      "name": "Хоулетт Джеймс",
+      "last_name": "Хоулетт",
+      "first_name": "Джеймс",
+      "patronymic": null,
       "photo": "workers/Рассомаха.jpg",
       "salary": "30000.00",
       "age": 41,
@@ -85,8 +97,10 @@
     "model": "company_api.worker",
     "pk": 7,
     "fields": {
-      "name": "Кент Кларк",
-      "photo": "",
+      "last_name": "Кент",
+      "first_name": "Кларк",
+      "patronymic": null,
+      "photo": "workers/Супермен.jpg",
       "salary": "40000.00",
       "age": 26,
       "department": 1
@@ -96,7 +110,9 @@
     "model": "company_api.worker",
     "pk": 8,
     "fields": {
-      "name": "Аллен Барри",
+      "last_name": "Аллен",
+      "first_name": "Барри",
+      "patronymic": null,
       "photo": "workers/Флеш.jpg",
       "salary": "35000.00",
       "age": 23,
@@ -107,7 +123,9 @@
     "model": "company_api.worker",
     "pk": 9,
     "fields": {
-      "name": "Бэннер Брюс",
+      "last_name": "Брюс",
+      "first_name": "Бэннер",
+      "patronymic": null,
       "photo": "workers/Халк.jpg",
       "salary": "50000.00",
       "age": 43,
@@ -118,7 +136,9 @@
     "model": "company_api.worker",
     "pk": 10,
     "fields": {
-      "name": "Диана",
+      "last_name": "Чудо-женщина",
+      "first_name": "Диана",
+      "patronymic": null,
       "photo": "workers/Чудо-женщина.jpg",
       "salary": "60000.00",
       "age": 27,
@@ -130,7 +150,7 @@
     "pk": 1,
     "fields": {
       "password": "pbkdf2_sha256$600000$bn731TvDXVVFYndnKFhKaa$b2G0mHrtbi59CFxzn3qIujFDhSUxgGlyfVasrlU0liA=",
-      "last_login": "2023-04-04T17:23:38.896Z",
+      "last_login": "2023-04-07T15:04:00.825Z",
       "is_superuser": true,
       "username": "superuser",
       "first_name": "",
