@@ -1,5 +1,12 @@
+from typing import Type, TypeVar
+
+from django.db.models import QuerySet
+from rest_framework import serializers
+
 SERIALIZER_KEY = "serializer"
 QUERYSET_KEY = "queryset"
+
+T = TypeVar("T", bound=serializers.ModelSerializer)
 
 
 class ActionsMapMixin:
@@ -12,8 +19,8 @@ class ActionsMapMixin:
 
     actions_map = None
 
-    def get_queryset(self):
+    def get_queryset(self) -> QuerySet:
         return self.actions_map[self.action][QUERYSET_KEY]
 
-    def get_serializer_class(self):
+    def get_serializer_class(self) -> Type[T]:
         return self.actions_map[self.action][SERIALIZER_KEY]

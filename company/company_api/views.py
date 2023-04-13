@@ -1,16 +1,22 @@
-from django.db.models import Count, Sum, Avg, Window, F, Prefetch
+from django.db.models import Avg, Count, F, Prefetch, Sum, Window
 from django_filters import rest_framework as filters
 from rest_framework.generics import CreateAPIView
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.viewsets import ModelViewSet, ReadOnlyModelViewSet
 
+from .mixins import QUERYSET_KEY, SERIALIZER_KEY, ActionsMapMixin
 from .models import Department, Worker
-from .serializers import (DepartmentListSerializer, RegistrationSerializer,
-                          WorkerListSerializer, WorkerRetrieveSerializer,
-                          WorkerCreateSerializer, WorkerUpdateSerializer,
-                          WorkerDeleteSerializer, DepartmentRetrieveSerializer,)
-from .mixins import ActionsMapMixin, SERIALIZER_KEY, QUERYSET_KEY
+from .serializers import (
+    DepartmentListSerializer,
+    DepartmentRetrieveSerializer,
+    RegistrationSerializer,
+    WorkerCreateSerializer,
+    WorkerDeleteSerializer,
+    WorkerListSerializer,
+    WorkerRetrieveSerializer,
+    WorkerUpdateSerializer,
+)
 
 
 class WorkerPagination(PageNumberPagination):
@@ -31,17 +37,19 @@ class DepartmentViewSet(ActionsMapMixin, ReadOnlyModelViewSet):
         "list": {
             SERIALIZER_KEY: DepartmentListSerializer,
             QUERYSET_KEY: Department.objects.annotate(
-                workers_count=Count("workers"),
-                department_salary=Sum("workers__salary")
-            ).select_related("director")
+                workers_count=Count("workers"), department_salary=Sum("workers__salary")
+            ).select_related("director"),
         },
         "retrieve": {
             SERIALIZER_KEY: DepartmentRetrieveSerializer,
-            QUERYSET_KEY: Department.objects.select_related("director").prefetch_related(
+            QUERYSET_KEY: Department.objects.select_related(
+                "director"
+            ).prefetch_related(
                 Prefetch(
-                    "workers", queryset=Worker.objects.exclude(
+                    "workers",
+                    queryset=Worker.objects.exclude(
                         pk__in=Department.objects.values_list("director", flat=True)
-                    )
+                    ),
                 )
             ),
         },
@@ -57,13 +65,14 @@ class WorkerViewSet(ActionsMapMixin, ModelViewSet):
         "list": {
             SERIALIZER_KEY: WorkerListSerializer,
             QUERYSET_KEY: Worker.objects.annotate(
-                avg_salary=Window(expression=Avg('salary'),
-                                  partition_by=[F('department')]
-                                  )).order_by("pk"),
+                avg_salary=Window(
+                    expression=Avg("salary"), partition_by=[F("department")]
+                )
+            ).order_by("pk"),
         },
         "retrieve": {
             SERIALIZER_KEY: WorkerRetrieveSerializer,
-            QUERYSET_KEY: Worker.objects.select_related('department'),
+            QUERYSET_KEY: Worker.objects.select_related("department"),
         },
         "partial_update": {
             SERIALIZER_KEY: WorkerUpdateSerializer,

@@ -26,10 +26,15 @@ class WorkerSerializerForDepartmentRetrieve(serializers.ModelSerializer):
 
     class Meta:
         model = Worker
-        fields = ("pk", "name", "salary", "age",)
+        fields = (
+            "pk",
+            "name",
+            "salary",
+            "age",
+        )
 
-    def get_name(self, obj):
-        return Worker.get_worker_name(obj)
+    def get_name(self, obj: Worker) -> str:
+        return str(obj)
 
 
 class DepartmentRetrieveSerializer(serializers.ModelSerializer):
@@ -38,12 +43,7 @@ class DepartmentRetrieveSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Department
-        fields = (
-            "pk",
-            "name",
-            "director",
-            "workers"
-        )
+        fields = ("pk", "name", "director", "workers")
 
 
 class DepartmentSerializerForWorkerRetrieve(serializers.ModelSerializer):
@@ -94,10 +94,16 @@ class WorkerRetrieveSerializer(serializers.ModelSerializer):
 
 
 class WorkerChangeSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = Worker
-        fields = ("last_name", "first_name", "patronymic", "salary", "age", "department",)
+        fields = (
+            "last_name",
+            "first_name",
+            "patronymic",
+            "salary",
+            "age",
+            "department",
+        )
 
 
 class WorkerCreateSerializer(WorkerChangeSerializer):

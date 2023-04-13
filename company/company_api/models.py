@@ -35,16 +35,18 @@ class Worker(models.Model):
     )
     age = models.PositiveIntegerField("Возраст", validators=(validate_not_too_old,))
     department = models.ForeignKey(
-        Department, models.SET_NULL, verbose_name="Департамент", null=True, blank=True, related_name="workers",
+        Department,
+        models.SET_NULL,
+        verbose_name="Департамент",
+        null=True,
+        blank=True,
+        related_name="workers",
     )
 
     def __str__(self) -> str:
-        return self.get_worker_name(self)
+        patronymic_or_empty_line = f" {self.patronymic}" if self.patronymic else ""
+        return f"{self.last_name} {self.first_name}{patronymic_or_empty_line}"
 
     class Meta:
         verbose_name = "Сотрудник"
         verbose_name_plural = "Сотрудники"
-
-    @staticmethod
-    def get_worker_name(worker):
-        return worker.last_name + " " + worker.first_name + (" " + worker.patronymic if worker.patronymic else "")
